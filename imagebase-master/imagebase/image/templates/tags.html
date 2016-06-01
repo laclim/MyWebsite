@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block main %}
+
+    <h2>{% if tag_slug %}Images tagged with: <strong>{{ tag_slug }}</strong>{% else %}Tags{% endif %}</h2>
+
+            {% if object_list %}
+            <ul class="inline-list">
+                {% for tag_object in object_list %}
+                    <li class="{% if tag_object.slug == tag_slug %}active{% else %}{% endif %}"><a href="{% url 'image_tag_list' slug=tag_object.slug %}" class="class="label label-{% if tag_object.slug == tag_slug %}primary{% else %}info{% endif %}"">{{ tag_object.name }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <p>There are no tags yet</p>
+            {% endif %}
+
+            <ul class="small-block-grid-4">
+            {% for image in images %}
+                <li>
+                    {% thumbnail image.image '320x240' crop='center' as im %}
+                        <a href="{% url 'image' pk=image.id  %}" class="thumbnail"><img src="{{ im.url }}" alt=""/></a></li>
+                    {% endthumbnail %}
+                </li>
+            {% endfor %}
+            </ul>
+
+{% endblock %}

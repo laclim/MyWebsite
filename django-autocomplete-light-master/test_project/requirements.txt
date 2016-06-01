@@ -1,0 +1,13 @@
+coverage
+django-extensions
+-e git+https://github.com/coleifer/django-generic-m2m.git#egg=genericm2m
+django-gm2m
+django-querysetsequence
+django-taggit
+django-tagging
+mock
+selenium
+pytest
+splinter
+pytest-django
+pytest-cov
